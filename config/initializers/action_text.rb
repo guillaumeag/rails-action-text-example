@@ -14,14 +14,14 @@
 # so the value of these attributes is now 'nil' unless set by the application.
 # You may call sanitizer_allowed_tags or sanitizer_allowed_attributes to inspect the tags and attributes being allowed by the sanitizer.
 
-# Combines the default allowed attributes from the sanitizer class with the attributes
-# from ActionText::Attachment and assigns them to default_allowed_attributes.
+# Combines the default allowed tags and attributes from the sanitizer class with the tags and attributes
+# from ActionText::Attachment and assigns them to default_allowed_tags and default_allowed_attributes.
 sanitizer = Rails::HTML5::Sanitizer.safe_list_sanitizer.new
 default_allowed_tags = sanitizer.class.allowed_tags + [ ActionText::Attachment.tag_name, "figure", "figcaption" ]
 default_allowed_attributes = sanitizer.class.allowed_attributes + ActionText::Attachment::ATTRIBUTES
 
-# Assigns the new allowed attributes to ActionText::ContentHelper.allowed_attributes.
-# This ensures that the sanitizer allows the necessary attributes for ActionText content.
-# ActionText::ContentHelper.allowed_tags = default_allowed_tags.merge(["embed"])
+# Assigns the new allowed tags and attributes to ActionText::ContentHelper.allowed_tags and ActionText::ContentHelper.allowed_attributes.
+# This ensures that the sanitizer allows the necessary tags and attributes for ActionText content.
+ActionText::ContentHelper.allowed_tags = default_allowed_tags.merge(["embed"])
 ActionText::ContentHelper.allowed_attributes = default_allowed_attributes.merge(["style"])
 
