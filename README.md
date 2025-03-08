@@ -157,6 +157,16 @@ document.addEventListener("trix-initialize", function(event) {
 })
 ```
 
+Add a CSS style for the new h3 tag to make it smaller than h1 and h2.
+
+```
+// app/assets/stylesheets/actiontext.css
+.trix-content h3 {
+  font-size: 1.1em;
+  line-height: 1.2;
+}
+```
+
 #### 6.3 Add a button to apply red color to the selected text
 
 ```
@@ -183,3 +193,8 @@ Then add the following line:
 # config/initializers/action_text.rb
 ActionText::ContentHelper.allowed_attributes = ["style"]
 ```
+
+## What next
+- [ ] Replace buttons accordingly
+- [ ] Find new icons
+- [ ] Create a color switcher for foreground and background text color
