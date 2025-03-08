@@ -187,11 +187,16 @@ To allow rails to render the HTML style attribute, we need to initialize the "Al
 
 To do so, create a file `action_text.rb` in `config/initializers`.
 
-Then add the following line:
+Then combines the default allowed tags and attributes from the sanitizer class with the tags and attributes from ActionText::Attachment and assigns them to default_allowed_tags and default_allowed_attributes.
 
 ```
 # config/initializers/action_text.rb
-ActionText::ContentHelper.allowed_attributes = ["style"]
+sanitizer = Rails::HTML5::Sanitizer.safe_list_sanitizer.new
+default_allowed_tags = sanitizer.class.allowed_tags + [ ActionText::Attachment.tag_name, "figure", "figcaption" ]
+default_allowed_attributes = sanitizer.class.allowed_attributes + ActionText::Attachment::ATTRIBUTES
+
+ActionText::ContentHelper.allowed_tags = default_allowed_tags.merge(["embed"])
+ActionText::ContentHelper.allowed_attributes = default_allowed_attributes.merge(["style"])
 ```
 
 ## What next
