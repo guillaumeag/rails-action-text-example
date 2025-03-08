@@ -345,7 +345,7 @@ trix-editor .attachment__metadata {
     box-sizing: border-box;
     margin: 0;
     padding: 0; }
-  .trix-content h1 {
+  .trix-content h1,h2 {
     font-size: 1.2em;
     line-height: 1.2; }
   .trix-content blockquote {
